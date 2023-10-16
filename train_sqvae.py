@@ -7,13 +7,12 @@ import os
 
 import numpy as np
 import torch
-import torch.optim as optim
-import torchvision.datasets as datasets
-import torchvision.transforms as transforms
 import tqdm
 import yaml
+from torch import optim
 from torch.utils.data import DataLoader
 from torch.utils.tensorboard import SummaryWriter
+from torchvision import datasets, transforms
 
 from models.sqvae import SQVAE
 
