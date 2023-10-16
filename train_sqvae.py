@@ -18,6 +18,7 @@ from models.sqvae import SQVAE
 
 
 def get_args():
+    """Parse arguments."""
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--datadir", type=str, required=True, help="path to MNIST dataset folder"
@@ -52,7 +53,8 @@ def get_args():
 
 
 def main(args):
-    with open(args.config, "r") as yml:
+    """Perform training and evaluataion of SQ-VAE."""
+    with open(args.config, "r", encoding="utf-8") as yml:
         cfg = yaml.safe_load(yml)
 
     device = f"cuda:{args.device}" if args.device is not None else "cpu"
@@ -108,7 +110,7 @@ def main(args):
     num_sample = args.num_sample
     temp_decay = cfg["temperature_decay"]
 
-    msg = ["\t{0}: {1}".format(key, val) for key, val in cfg.items()]
+    msg = [f"\t{key}: {val}" for key, val in cfg.items()]
     print("hyperparameters: \n" + "\n".join(msg))
 
     # main training loop
@@ -180,5 +182,5 @@ def main(args):
 
 
 if __name__ == "__main__":
-    args = get_args()
-    main(args)
+    arguments = get_args()
+    main(arguments)
